@@ -6,6 +6,7 @@
 package tela;
 
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,10 +19,10 @@ public class IMC extends javax.swing.JFrame {
      */
     public IMC() {
         initComponents();
-        
+
         //Chamando o metodo para alterar o icone do jFrame
         setIcon();
-        
+
     }
 
     /**
@@ -42,9 +43,10 @@ public class IMC extends javax.swing.JFrame {
         txt_peso = new javax.swing.JTextField();
         btn_resultado = new javax.swing.JButton();
         btn_requisitos = new javax.swing.JButton();
-        lbl_status = new javax.swing.JLabel();
+        lbl_imc = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        lbl_status = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -91,11 +93,21 @@ public class IMC extends javax.swing.JFrame {
 
         btn_resultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/Resultado.png"))); // NOI18N
         btn_resultado.setText("Resultado");
+        btn_resultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resultadoActionPerformed(evt);
+            }
+        });
 
         btn_requisitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/Ver requisitos.png"))); // NOI18N
         btn_requisitos.setText("Requisitos");
+        btn_requisitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_requisitosActionPerformed(evt);
+            }
+        });
 
-        lbl_status.setText("status");
+        lbl_imc.setText("IMC");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -136,8 +148,10 @@ public class IMC extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbl_imc)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lbl_status)
-                                        .addGap(36, 36, 36))
+                                        .addGap(21, 21, 21))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btn_resultado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
@@ -171,7 +185,9 @@ public class IMC extends javax.swing.JFrame {
                     .addComponent(btn_resultado)
                     .addComponent(btn_requisitos))
                 .addGap(26, 26, 26)
-                .addComponent(lbl_status)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_imc)
+                    .addComponent(lbl_status))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -185,6 +201,35 @@ public class IMC extends javax.swing.JFrame {
         ImageIcon icone = new ImageIcon("../icones/indice-de-massa-corporal.png");
         setIconImage(icone.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void btn_resultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resultadoActionPerformed
+
+        //Variaveis 
+        double peso, altura, IMC;
+        String valor_peso, valor_altura;
+
+        //Pegando os dados inseridos nos campos das LABEL
+        valor_peso = txt_peso.getText();
+        valor_altura = txt_altura.getText();
+
+        //Atribuindo o valor das variaveis inseridas a variavel PESO e ALTURA
+        peso = Double.parseDouble(valor_peso);
+        altura = Double.parseDouble(valor_altura);
+
+        //Calculando o IMC
+        IMC = (peso / (altura * altura));
+
+        //Mostrando na LABEL_STATUS o valor de IMC
+        String IMC_novo = String.format("%.2f", IMC);
+        lbl_imc.setText("O seu IMC e igual a " + IMC_novo);
+        //System.out.println(resultado);
+
+    }//GEN-LAST:event_btn_resultadoActionPerformed
+
+    private void btn_requisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_requisitosActionPerformed
+        TelaRequisitos requisitos = new TelaRequisitos();
+        requisitos.setVisible(true);
+    }//GEN-LAST:event_btn_requisitosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,16 +276,15 @@ public class IMC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_imc;
     private javax.swing.JLabel lbl_status;
     private javax.swing.JTextField txt_altura;
     private javax.swing.JTextField txt_peso;
     // End of variables declaration//GEN-END:variables
 
-  
     //Metodo responsavel por alterar o icone do jFrame
-    
     private void setIcon() {
-       // setIconImage(ToolKit.getDefault);
-        
+        // setIconImage(ToolKit.getDefault);
+
     }
 }
