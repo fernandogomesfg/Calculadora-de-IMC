@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tela;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -19,10 +16,8 @@ public class IMC extends javax.swing.JFrame {
      */
     public IMC() {
         initComponents();
-
-        //Chamando o metodo para alterar o icone do jFrame
-        setIcon();
-
+        //Fazendo a tela abrir no centro
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -203,26 +198,48 @@ public class IMC extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void btn_resultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resultadoActionPerformed
+        try {
+            //Variaveis 
+            double peso, altura, IMC;
+            String valor_peso, valor_altura;
 
-        //Variaveis 
-        double peso, altura, IMC;
-        String valor_peso, valor_altura;
+            //Pegando os dados inseridos nos campos das LABEL
+            valor_peso = txt_peso.getText();
+            valor_altura = txt_altura.getText();
 
-        //Pegando os dados inseridos nos campos das LABEL
-        valor_peso = txt_peso.getText();
-        valor_altura = txt_altura.getText();
+            //Atribuindo o valor das variaveis inseridas a variavel PESO e ALTURA
+            peso = Double.parseDouble(valor_peso);
+            altura = Double.parseDouble(valor_altura);
 
-        //Atribuindo o valor das variaveis inseridas a variavel PESO e ALTURA
-        peso = Double.parseDouble(valor_peso);
-        altura = Double.parseDouble(valor_altura);
+            //Calculando o IMC
+            IMC = (peso / (altura * altura));
 
-        //Calculando o IMC
-        IMC = (peso / (altura * altura));
+            //Mostrando na LABEL_STATUS o valor de IMC
+            String IMC_novo = String.format("%.2f", IMC);
+            lbl_imc.setText("O seu IMC e igual a " + IMC_novo);
+            //System.out.println(resultado);
 
-        //Mostrando na LABEL_STATUS o valor de IMC
-        String IMC_novo = String.format("%.2f", IMC);
-        lbl_imc.setText("O seu IMC e igual a " + IMC_novo);
-        //System.out.println(resultado);
+            //Fazendo comparacoes dos resultados do IMC
+            if (IMC < 19) {
+                lbl_status.setText("Abaixo do Peso");
+                //System.out.println("Abaixo do Peso");
+            } else if (IMC >= 19 && IMC < 25) {
+                lbl_status.setText("Peso Normal");
+                //System.out.println("Peso Normal");
+            } else if (IMC >= 25 && IMC < 30) {
+                lbl_status.setText("Sobrepeso");
+                //System.out.println("Sobrepeso");
+            } else if (IMC >= 30 && IMC < 40) {
+                lbl_status.setText("Obesidade do Tipo 1");
+                //System.out.println("Obesidade do Tipo 1");
+            } else {
+                lbl_status.setText("Obesidade Morbida");
+                //System.out.println("Obesidade Morbida");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Preencha todos campos com dados certos");
+        }
 
     }//GEN-LAST:event_btn_resultadoActionPerformed
 
@@ -282,9 +299,4 @@ public class IMC extends javax.swing.JFrame {
     private javax.swing.JTextField txt_peso;
     // End of variables declaration//GEN-END:variables
 
-    //Metodo responsavel por alterar o icone do jFrame
-    private void setIcon() {
-        // setIconImage(ToolKit.getDefault);
-
-    }
 }
