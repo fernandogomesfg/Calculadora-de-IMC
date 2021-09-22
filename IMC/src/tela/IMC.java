@@ -216,7 +216,7 @@ public class IMC extends javax.swing.JFrame {
 
             //Mostrando na LABEL_STATUS o valor de IMC
             String IMC_novo = String.format("%.2f", IMC);
-            lbl_imc.setText("O seu IMC e igual a " + IMC_novo);
+            lbl_imc.setText("O seu IMC é igual a: " + IMC_novo);
             //System.out.println(resultado);
 
             //Fazendo comparacoes dos resultados do IMC
@@ -233,7 +233,7 @@ public class IMC extends javax.swing.JFrame {
                 lbl_status.setText("Obesidade do Tipo 1");
                 //System.out.println("Obesidade do Tipo 1");
             } else {
-                lbl_status.setText("Obesidade Morbida");
+                lbl_status.setText("Obesidade Mórbida");
                 //System.out.println("Obesidade Morbida");
             }
 
