@@ -33,6 +33,7 @@ public class TelaRequisitos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Requisitos");
+        setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tabela de IMC.png"))); // NOI18N
 
